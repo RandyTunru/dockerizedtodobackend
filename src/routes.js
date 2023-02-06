@@ -6,12 +6,12 @@ router.use(express.json());
 
 router.post('/todo', handler.addToDo);
 
-// router.get('/todo', handler.getToDo);
+router.get('/todo', handler.getToDo);
 
-// router.get('/todo/:id', handler.getToDoById);
+router.get('/todo/:id', handler.getToDoById);
 
-// router.put('/todo/:id', handler.updateToDo);
+router.put('/todo/:id', handler.updateToDo);
 
-// router.delete('/todo/:id', handler.deleteToDo);
+router.delete('/todo/:id', handler.deleteToDo);
 
 module.exports = router;

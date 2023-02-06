@@ -31,4 +31,27 @@ const getToDoById = (req, res) => {
     });
 };
 
-module.exports = { addToDo, getToDo };
+const  updateToDo  =  ( req ,  res )  =>  {
+    const  id  =  req.params.id ;
+    const  { info ,  isDone }  =  req.body ;
+    pool.query ( 'UPDATE todos SET info = $1, isDone = $2 WHERE id = $3' , [ info ,  isDone ,  id ], ( error ,  results )  =>  {
+        if  ( error )  {
+            throw  error ;
+        }
+        res.status(200).send( `ToDo modified with ID: ${ id }` );
+    });
+}
+
+const deleteToDo = (req, res) => {
+    const id = req.params.id;
+    pool.query('DELETE FROM todos WHERE id = $1', [id], (error, results) => {
+        if (error) {
+            throw error;
+        }
+        res.status(200).send(`ToDo deleted with ID: ${id}`);
+    });
+};
+
+
+
+module.exports = { addToDo, getToDo, getToDoById, updateToDo, deleteToDo };
