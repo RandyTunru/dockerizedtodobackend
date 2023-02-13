@@ -8,7 +8,7 @@ const addToDo = (req, res) => {
         if (error) {
             throw error;
         }
-        res.status(201).send(`ToDo added with ID: ${id}`);
+        res.status(201).json({ id: id })
     });
 };
 

@@ -1,0 +1,36 @@
+networks:
+  todo-app:
+    external: true
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: todo
+    volumes:
+      - todo-db:/data
+    networks:
+      - todo-app
+    ports:
+      - 5432:5432
+
+  app: 
+    build: .
+    ports: 
+      - 5000:5000
+    depends_on:
+      - db
+    links:
+      - "db"
+    networks:
+      - todo-app
+        
+ 
+  
+
+volumes:
+  todo-db:
+
